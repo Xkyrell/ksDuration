@@ -15,10 +15,12 @@ public interface TemporalHolder<T extends TemporalHolder<T>> {
         return operation(temporal, (a, b) -> a - b);
     }
 
+    @SuppressWarnings("unchecked")
     default T multiply(int multiplier) {
         return operation((T) this, (a, __) -> a * multiplier);
     }
 
+    @SuppressWarnings("unchecked")
     default T divide(int divisor) {
         return operation((T) this, (a, __) -> a / divisor);
     }
