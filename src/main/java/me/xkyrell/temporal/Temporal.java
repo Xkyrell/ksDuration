@@ -31,6 +31,14 @@ public class Temporal implements TemporalHolder<Temporal>, TemporalValue<Tempora
         return new Temporal(temporal.millis);
     }
 
+    public static Temporal between(long start, long end) {
+        return new Temporal(end - start);
+    }
+
+    public static Temporal between(@NonNull Temporal start, @NonNull Temporal end) {
+        return between(start.millis, end.millis);
+    }
+
     @Override
     public Temporal operation(@NonNull Temporal temporal, BiFunction<Long, Long, Long> operator) {
         millis = operator.apply(millis, temporal.millis);
@@ -55,6 +63,10 @@ public class Temporal implements TemporalHolder<Temporal>, TemporalValue<Tempora
 
     public Duration toDuration() {
         return Duration.ofMillis(millis);
+    }
+
+    public boolean isValid() {
+        return (millis > 0);
     }
 
     public boolean isZero() {
