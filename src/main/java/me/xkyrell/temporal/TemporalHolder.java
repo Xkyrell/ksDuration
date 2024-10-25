@@ -1,27 +1,25 @@
 package me.xkyrell.temporal;
 
 import lombok.NonNull;
-import java.util.function.BiFunction;
+import java.util.function.Function;
 
 public interface TemporalHolder<T extends TemporalHolder<T>> {
 
-    T operation(@NonNull T temporal, BiFunction<Long, Long, Long> operator);
+    T operation(@NonNull Function<Long, Long> operator);
 
-    default T plus(@NonNull T temporal) {
-        return operation(temporal, Long::sum);
+    default T plus(@NonNull TemporalValue value) {
+        return operation(millis -> millis + value.getMillis());
     }
 
-    default T minus(@NonNull T temporal) {
-        return operation(temporal, (a, b) -> a - b);
+    default T minus(@NonNull TemporalValue value) {
+        return operation(millis -> millis - value.getMillis());
     }
 
-    @SuppressWarnings("unchecked")
     default T multiply(int multiplier) {
-        return operation((T) this, (a, __) -> a * multiplier);
+        return operation(millis -> millis * multiplier);
     }
 
-    @SuppressWarnings("unchecked")
     default T divide(int divisor) {
-        return operation((T) this, (a, __) -> a / divisor);
+        return operation(millis -> millis / divisor);
     }
 }

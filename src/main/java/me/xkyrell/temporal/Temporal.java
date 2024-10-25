@@ -3,13 +3,13 @@ package me.xkyrell.temporal;
 import lombok.*;
 import java.time.Duration;
 import java.util.concurrent.TimeUnit;
-import java.util.function.BiFunction;
+import java.util.function.Function;
 
 @Getter
 @ToString
 @EqualsAndHashCode
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
-public class Temporal implements TemporalHolder<Temporal>, TemporalValue<Temporal>, Cloneable {
+public class Temporal implements TemporalHolder<Temporal>, TemporalValue, Cloneable {
 
     public static final Temporal ZERO = new Temporal(0L);
 
@@ -27,21 +27,21 @@ public class Temporal implements TemporalHolder<Temporal>, TemporalValue<Tempora
         return new Temporal(duration.toMillis());
     }
 
-    public static Temporal of(@NonNull Temporal temporal) {
-        return new Temporal(temporal.millis);
+    public static Temporal of(@NonNull TemporalValue value) {
+        return new Temporal(value.getMillis());
     }
 
     public static Temporal between(long start, long end) {
         return new Temporal(end - start);
     }
 
-    public static Temporal between(@NonNull Temporal start, @NonNull Temporal end) {
-        return between(start.millis, end.millis);
+    public static Temporal between(@NonNull TemporalValue start, @NonNull TemporalValue end) {
+        return between(start.getMillis(), end.getMillis());
     }
 
     @Override
-    public Temporal operation(@NonNull Temporal temporal, BiFunction<Long, Long, Long> operator) {
-        millis = operator.apply(millis, temporal.millis);
+    public Temporal operation(@NonNull Function<Long, Long> operator) {
+        millis = operator.apply(millis);
         return this;
     }
 
@@ -51,8 +51,8 @@ public class Temporal implements TemporalHolder<Temporal>, TemporalValue<Tempora
     }
 
     @Override
-    public int compareTo(@NonNull Temporal other) {
-        return Long.compare(millis, other.millis);
+    public int compareTo(@NonNull TemporalValue other) {
+        return Long.compare(millis, other.getMillis());
     }
 
     @SneakyThrows(CloneNotSupportedException.class)
