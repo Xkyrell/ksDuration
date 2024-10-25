@@ -2,7 +2,6 @@ package me.xkyrell.temporal;
 
 import lombok.*;
 import java.time.Duration;
-import java.util.concurrent.TimeUnit;
 import java.util.function.Function;
 
 @Getter
@@ -19,8 +18,8 @@ public class Temporal implements TemporalHolder<Temporal>, TemporalValue, Clonea
         return new Temporal(millis);
     }
 
-    public static Temporal of(long millis, @NonNull TimeUnit unit) {
-        return new Temporal(unit.toMillis(millis));
+    public static Temporal of(long millis, @NonNull TemporalUnit unit) {
+        return new Temporal(millis * unit.toMillis());
     }
 
     public static Temporal of(@NonNull Duration duration) {
@@ -46,8 +45,8 @@ public class Temporal implements TemporalHolder<Temporal>, TemporalValue, Clonea
     }
 
     @Override
-    public long get(@NonNull TimeUnit unit) {
-        return unit.convert(millis, TimeUnit.MILLISECONDS);
+    public long get(@NonNull TemporalUnit unit) {
+        return unit.convert(millis, TemporalUnit.MILLIS);
     }
 
     @Override

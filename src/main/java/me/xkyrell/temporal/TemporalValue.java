@@ -6,7 +6,7 @@ import java.util.concurrent.TimeUnit;
 
 public interface TemporalValue extends Comparable<TemporalValue> {
 
-    long get(@NonNull TimeUnit unit);
+    long get(@NonNull TemporalUnit unit);
 
     long getMillis();
 
