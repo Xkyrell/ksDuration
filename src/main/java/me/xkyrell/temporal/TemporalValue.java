@@ -2,8 +2,6 @@ package me.xkyrell.temporal;
 
 import lombok.NonNull;
 
-import java.util.concurrent.TimeUnit;
-
 public interface TemporalValue extends Comparable<TemporalValue> {
 
     long get(@NonNull TemporalUnit unit);
