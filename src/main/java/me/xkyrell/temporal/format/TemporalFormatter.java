@@ -1,8 +1,8 @@
 package me.xkyrell.temporal.format;
 
-import me.xkyrell.temporal.format.style.TemporalSchema;
+import me.xkyrell.temporal.format.style.TemporalStyle;
 
-public interface TemporalFormatter<S extends TemporalSchema> {
+public interface TemporalFormatter<S extends TemporalStyle> {
 
     String format(long millis, S style) throws Throwable;
 
