@@ -2,6 +2,7 @@ package me.xkyrell.temporal.format.style;
 
 import lombok.AccessLevel;
 import lombok.Getter;
+import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import me.xkyrell.temporal.format.TemporalFormatter;
 import me.xkyrell.temporal.format.TemporalParser;
@@ -45,13 +46,13 @@ abstract class AbstractTemporalStyle<S extends TemporalStyle> implements Tempora
         protected B self = (B) this;
 
         @Override
-        public B formatter(TemporalFormatter<S> formatter) {
+        public B formatter(@NonNull TemporalFormatter<S> formatter) {
             this.formatter = formatter;
             return self;
         }
 
         @Override
-        public B parser(TemporalParser<S> parser) {
+        public B parser(@NonNull TemporalParser<S> parser) {
             this.parser = parser;
             return self;
         }

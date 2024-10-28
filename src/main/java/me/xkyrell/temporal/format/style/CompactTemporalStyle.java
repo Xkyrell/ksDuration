@@ -1,5 +1,6 @@
 package me.xkyrell.temporal.format.style;
 
+import lombok.NonNull;
 import me.xkyrell.temporal.TemporalUnit;
 import me.xkyrell.temporal.format.registry.TemporalRegistry;
 import java.util.Map;
@@ -10,11 +11,11 @@ public interface CompactTemporalStyle extends TemporalStyle {
 
     interface Builder extends StyleBuilder<Builder, CompactTemporalStyle> {
 
-        Builder unit(String syntax, TemporalUnit unit);
+        Builder unit(@NonNull String syntax, @NonNull TemporalUnit unit);
 
-        Builder unit(Map<String, TemporalUnit> entries);
+        Builder unit(@NonNull Map<String, TemporalUnit> units);
 
-        default Builder unit(TemporalRegistry<String, TemporalUnit> registry) {
+        default Builder unit(@NonNull TemporalRegistry<String, TemporalUnit> registry) {
             return unit(registry.loadStyles());
         }
     }

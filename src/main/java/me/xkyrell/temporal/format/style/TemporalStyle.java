@@ -1,11 +1,27 @@
 package me.xkyrell.temporal.format.style;
 
+import lombok.NonNull;
 import me.xkyrell.temporal.format.TemporalFormatter;
 import me.xkyrell.temporal.format.TemporalParser;
 import me.xkyrell.temporal.util.Buildable;
+import java.util.function.Consumer;
 import java.util.function.Supplier;
 
 public interface TemporalStyle {
+
+    static <B extends StyleBuilder<B, S>, S extends TemporalStyle>
+    S configure(@NonNull B builder, @NonNull Consumer<? super B> building) {
+        building.accept(builder);
+        return builder.build();
+    }
+
+    static TextualTemporalStyle.Builder textual() {
+        return new SimpleTextualTemporalStyle.SimpleBuilder();
+    }
+
+    static CompactTemporalStyle.Builder compact() {
+        return new SimpleCompactTemporalStyle.SimpleBuilder();
+    }
 
     String format(long millis);
 
@@ -13,9 +29,9 @@ public interface TemporalStyle {
 
     interface StyleBuilder<B extends StyleBuilder<B, S>, S extends TemporalStyle> extends Buildable<S> {
 
-        B formatter(TemporalFormatter<S> formatter);
+        B formatter(@NonNull TemporalFormatter<S> formatter);
 
-        B parser(TemporalParser<S> parser);
+        B parser(@NonNull TemporalParser<S> parser);
 
         default B formatter(Supplier<? extends TemporalFormatter<S>> formatter) {
             return formatter(formatter.get());

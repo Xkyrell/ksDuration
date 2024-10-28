@@ -1,5 +1,6 @@
 package me.xkyrell.temporal.format.style;
 
+import lombok.NonNull;
 import me.xkyrell.temporal.format.registry.TemporalEntry;
 import me.xkyrell.temporal.format.registry.TemporalRegistry;
 import java.util.Map;
@@ -13,13 +14,13 @@ public interface TextualTemporalStyle extends TemporalStyle {
 
     interface Builder extends StyleBuilder<Builder, TextualTemporalStyle> {
 
-        Builder pluralize(Function<Long, Integer> pluralizer);
+        Builder pluralize(@NonNull Function<Long, Integer> pluralizer);
 
-        Builder unit(String syntax, TemporalEntry entry);
+        Builder unit(@NonNull String syntax, @NonNull TemporalEntry entry);
 
-        Builder unit(Map<String, TemporalEntry> entries);
+        Builder unit(@NonNull Map<String, TemporalEntry> entries);
 
-        default Builder unit(TemporalRegistry<String, TemporalEntry> registry) {
+        default Builder unit(@NonNull TemporalRegistry<String, TemporalEntry> registry) {
             return unit(registry.loadStyles());
         }
     }
