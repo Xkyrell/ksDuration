@@ -35,7 +35,7 @@ final class SimpleCompactTemporalStyle extends AbstractTemporalStyle<CompactTemp
 
         @Override
         public Builder unit(@NonNull Map<String, TemporalUnit> units) {
-            this.units.forEach(this::unit);
+            units.forEach(this::unit);
             return self;
         }
 
