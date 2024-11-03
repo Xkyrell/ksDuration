@@ -9,12 +9,12 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class TemporalParserFormatterTest {
 
-    private static final TextualTemporalStyle TEXTUAL = TemporalStyle.textual()
+    private static final TextualTemporalStyle TEXTUAL = TextualTemporalStyle.builder()
             .unit(new TextualTemporalRegistry())
             .pluralize(group -> (group == 1) ? 0 : 1)
             .build();
 
-    private static final CompactTemporalStyle COMPACT = TemporalStyle.compact()
+    private static final CompactTemporalStyle COMPACT = CompactTemporalStyle.builder()
             .unit(new CompactTemporalRegistry())
             .build();
 

@@ -7,6 +7,14 @@ import java.util.Map;
 
 public interface CompactTemporalStyle extends TemporalStyle {
 
+    static CompactTemporalStyle.Builder builder() {
+        return new SimpleCompactTemporalStyle.SimpleBuilder();
+    }
+
+    static CompactTemporalStyle compact() {
+        return SimpleCompactTemporalStyle.COMPACT;
+    }
+
     Map<String, TemporalUnit> getUnits();
 
     interface Builder extends StyleBuilder<Builder, CompactTemporalStyle> {

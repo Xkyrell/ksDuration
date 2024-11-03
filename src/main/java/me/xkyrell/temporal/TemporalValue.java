@@ -1,6 +1,8 @@
 package me.xkyrell.temporal;
 
 import lombok.NonNull;
+import me.xkyrell.temporal.format.style.TemporalStyle;
+import me.xkyrell.temporal.format.style.TextualTemporalStyle;
 
 public interface TemporalValue extends Comparable<TemporalValue> {
 
@@ -18,5 +20,13 @@ public interface TemporalValue extends Comparable<TemporalValue> {
 
     default boolean isEqual(@NonNull TemporalValue value) {
         return compareTo(value) == 0;
+    }
+
+    default String formatAs(TemporalStyle style) {
+        return style.format(getMillis());
+    }
+
+    default String format() {
+        return formatAs(TextualTemporalStyle.textual());
     }
 }

@@ -8,6 +8,14 @@ import java.util.function.Function;
 
 public interface TextualTemporalStyle extends TemporalStyle {
 
+    static TextualTemporalStyle.Builder builder() {
+        return new SimpleTextualTemporalStyle.SimpleBuilder();
+    }
+
+    static TextualTemporalStyle textual() {
+        return SimpleTextualTemporalStyle.TEXTUAL;
+    }
+
     int applyPluralForm(long millis);
 
     Map<String, TemporalEntry> getTemporalEntries();

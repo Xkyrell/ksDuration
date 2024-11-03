@@ -1,6 +1,9 @@
 package me.xkyrell.temporal;
 
 import lombok.*;
+import me.xkyrell.temporal.format.style.TemporalStyle;
+import me.xkyrell.temporal.format.style.TextualTemporalStyle;
+
 import java.time.Duration;
 import java.util.function.Function;
 
@@ -36,6 +39,14 @@ public class Temporal implements TemporalHolder<Temporal>, TemporalValue, Clonea
 
     public static Temporal between(@NonNull TemporalValue start, @NonNull TemporalValue end) {
         return between(start.getMillis(), end.getMillis());
+    }
+
+    public static Temporal parse(String value, TemporalStyle style) {
+        return new Temporal(style.parse(value));
+    }
+
+    public static Temporal parse(String value) {
+        return parse(value, TextualTemporalStyle.textual());
     }
 
     @Override

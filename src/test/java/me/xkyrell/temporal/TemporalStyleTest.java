@@ -8,10 +8,10 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class TemporalStyleTest {
 
-    private static final TextualTemporalStyle.Builder TEXTUAL_BUILDER = TemporalStyle.textual()
+    private static final TextualTemporalStyle.Builder TEXTUAL_BUILDER = TextualTemporalStyle.builder()
             .unit(new TextualTemporalRegistry());
 
-    private static final CompactTemporalStyle.Builder COMPACT_BUILDER = TemporalStyle.compact()
+    private static final CompactTemporalStyle.Builder COMPACT_BUILDER = CompactTemporalStyle.builder()
             .unit(new CompactTemporalRegistry());
 
     @Test

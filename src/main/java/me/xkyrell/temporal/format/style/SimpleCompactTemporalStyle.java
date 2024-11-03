@@ -5,11 +5,20 @@ import lombok.NonNull;
 import me.xkyrell.temporal.TemporalUnit;
 import me.xkyrell.temporal.format.TemporalFormatter;
 import me.xkyrell.temporal.format.TemporalParser;
+import me.xkyrell.temporal.format.impl.CompactTemporalFormatter;
+import me.xkyrell.temporal.format.impl.CompactTemporalParser;
+import me.xkyrell.temporal.format.registry.impl.CompactTemporalRegistry;
 import java.util.HashMap;
 import java.util.Map;
 
 @Getter
 final class SimpleCompactTemporalStyle extends AbstractTemporalStyle<CompactTemporalStyle> implements CompactTemporalStyle {
+
+    static final CompactTemporalStyle COMPACT = new SimpleBuilder()
+            .formatter(new CompactTemporalFormatter("h:s"))
+            .parser(new CompactTemporalParser("h:s"))
+            .unit(new CompactTemporalRegistry())
+            .build();
 
     private final Map<String, TemporalUnit> units;
 

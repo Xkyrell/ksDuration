@@ -4,12 +4,22 @@ import lombok.Getter;
 import lombok.NonNull;
 import me.xkyrell.temporal.format.TemporalFormatter;
 import me.xkyrell.temporal.format.TemporalParser;
+import me.xkyrell.temporal.format.impl.TextualTemporalFormatter;
+import me.xkyrell.temporal.format.impl.TextualTemporalParser;
 import me.xkyrell.temporal.format.registry.TemporalEntry;
+import me.xkyrell.temporal.format.registry.impl.TextualTemporalRegistry;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.function.Function;
 
 final class SimpleTextualTemporalStyle extends AbstractTemporalStyle<TextualTemporalStyle> implements TextualTemporalStyle {
+
+    static final TextualTemporalStyle TEXTUAL = new SimpleBuilder()
+            .pluralize(group -> (group == 1) ? 0 : 1)
+            .formatter(TextualTemporalFormatter::new)
+            .parser(TextualTemporalParser::new)
+            .unit(new TextualTemporalRegistry())
+            .build();
 
     @Getter
     private final Map<String, TemporalEntry> temporalEntries;

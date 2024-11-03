@@ -15,14 +15,6 @@ public interface TemporalStyle {
         return builder.build();
     }
 
-    static TextualTemporalStyle.Builder textual() {
-        return new SimpleTextualTemporalStyle.SimpleBuilder();
-    }
-
-    static CompactTemporalStyle.Builder compact() {
-        return new SimpleCompactTemporalStyle.SimpleBuilder();
-    }
-
     String format(long millis);
 
     long parse(String value);
