@@ -20,7 +20,7 @@ class TemporalParserFormatterTest {
 
     @Test
     void testCompactTemporalFormatter() throws Throwable {
-        CompactTemporalFormatter formatter = new CompactTemporalFormatter("h:m:s");
+        CompactTemporalFormatter formatter = new CompactTemporalFormatter("hh:mm:ss");
         String formatted = formatter.format(3_660_000L, COMPACT);
 
         assertEquals("01:01:00", formatted);
@@ -28,7 +28,7 @@ class TemporalParserFormatterTest {
 
     @Test
     void testCompactTemporalParser() throws NumberFormatException {
-        CompactTemporalParser parser = new CompactTemporalParser("h:m:s");
+        CompactTemporalParser parser = new CompactTemporalParser("hh:mm:ss");
         long parsedMillis = parser.parse("01:01:00", COMPACT);
 
         assertEquals(3_660_000L, parsedMillis);

@@ -15,12 +15,12 @@ class TemporalRegistryTest {
         Map<String, TemporalUnit> units = registry.loadStyles();
         assertEquals(8, units.size());
         assertEquals(TemporalUnit.FOREVER, units.get("ff"));
-        assertEquals(TemporalUnit.YEARS, units.get("y"));
+        assertEquals(TemporalUnit.YEARS, units.get("yy"));
         assertEquals(TemporalUnit.MONTHS, units.get("mo"));
-        assertEquals(TemporalUnit.DAYS, units.get("d"));
-        assertEquals(TemporalUnit.HOURS, units.get("h"));
-        assertEquals(TemporalUnit.MINUTES, units.get("m"));
-        assertEquals(TemporalUnit.SECONDS, units.get("s"));
+        assertEquals(TemporalUnit.DAYS, units.get("dd"));
+        assertEquals(TemporalUnit.HOURS, units.get("hh"));
+        assertEquals(TemporalUnit.MINUTES, units.get("mm"));
+        assertEquals(TemporalUnit.SECONDS, units.get("ss"));
         assertEquals(TemporalUnit.MILLIS, units.get("ms"));
     }
 

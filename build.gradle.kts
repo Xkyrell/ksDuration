@@ -3,7 +3,7 @@ plugins {
 }
 
 group = "me.xkyrell"
-version = "1.0-SNAPSHOT"
+version = "1.0"
 
 repositories {
     mavenCentral()

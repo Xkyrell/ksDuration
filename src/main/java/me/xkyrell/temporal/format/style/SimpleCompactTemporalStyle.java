@@ -15,8 +15,8 @@ import java.util.Map;
 final class SimpleCompactTemporalStyle extends AbstractTemporalStyle<CompactTemporalStyle> implements CompactTemporalStyle {
 
     static final CompactTemporalStyle COMPACT = new SimpleBuilder()
-            .formatter(new CompactTemporalFormatter("h:s"))
-            .parser(new CompactTemporalParser("h:s"))
+            .formatter(new CompactTemporalFormatter("mm:ss"))
+            .parser(new CompactTemporalParser("mm:ss"))
             .unit(new CompactTemporalRegistry())
             .build();
 

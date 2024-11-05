@@ -13,12 +13,12 @@ public class CompactTemporalRegistry implements TemporalRegistry<String, Tempora
     public Map<String, TemporalUnit> loadStyles() {
         return new HashMap<String, TemporalUnit>() {{
             put("ff", FOREVER);
-            put("y", YEARS);
+            put("yy", YEARS);
             put("mo", MONTHS);
-            put("d", DAYS);
-            put("h", HOURS);
-            put("m", MINUTES);
-            put("s", SECONDS);
+            put("dd", DAYS);
+            put("hh", HOURS);
+            put("mm", MINUTES);
+            put("ss", SECONDS);
             put("ms", MILLIS);
         }};
     }
